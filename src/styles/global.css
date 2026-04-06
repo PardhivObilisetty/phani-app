@@ -1,0 +1,137 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+.card{
+  padding:40px;
+}
+
+button{
+  width:100%;
+  margin-top:15px;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+}
+
+
+/* PREMIUM DREAMY BACKGROUND */
+.gradient-bg{
+    
+  min-height:100vh;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at 15% 25%, #cc90fd 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, #e3a5ff 0%, transparent 40%),
+    linear-gradient(135deg,#edd6ff,#f1d6ff,#faf0ff);
+}
+
+/* FLOATING HEARTS */
+.heart{
+  position:absolute;
+  font-size:18px;
+  animation: floatUp linear infinite;
+  opacity:.75;
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(100vh);
+  }
+  to{
+    transform:translateY(-10vh);
+  }
+}
+
+/* GLASS CARD */
+.card{
+  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.35);
+
+  padding:60px;
+  border-radius:32px;
+
+  box-shadow:
+     0 25px 70px rgba(225, 105, 255, 0.35),
+     inset 0 0 30px rgba(255, 255, 255, 0.5);
+
+  max-width:420px;
+  width:90%;
+
+  text-align:center;
+}
+
+/* TEXT */
+.title{
+  font-family:'Playfair Display', serif;
+  font-size:34px;
+  margin-bottom:25px;
+}
+
+/* BUTTON */
+button{
+  padding:14px 30px;
+  border:none;
+  border-radius:40px;
+  background:#e38fff;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+
+  box-shadow:0 10px 30px rgba(193, 105, 255, 0.45);
+  transition:.35s;
+}
+                        
+button:hover{
+  transform:translateY(-4px);
+}
+/* ===== MOVING BLOBS ===== */
+
+.blob{
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  filter: blur(16 0px);
+  opacity:.55;
+  animation: moveBlob 18s infinite alternate ease-in-out;
+}
+
+/* blob colors */
+.blob1{
+  background:#e1b3ff;
+  top:-120px;
+  left:-120px;
+}
+
+.blob2{
+  background:#f0c2ff;
+  bottom:-150px;
+  right:-100px;
+  animation-delay:4s;
+}
+
+.blob3{
+  background:#efd6ff;
+  top:40%;
+  left:60%;
+  animation-delay:8s;
+}
+
+/* movement animation */
+@keyframes moveBlob{
+  from{
+    transform: translate(0,0) scale(1);
+  }
+  to{
+    transform: translate(80px,-60px) scale(1.2);
+  }
+}
