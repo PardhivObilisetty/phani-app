@@ -3,7 +3,7 @@ import Layout from "./Layout";
 function Intro({ next, startMusic }) {
 
   const handleClick = () => {
-    startMusic();   // starts music ONLY once
+    startMusic("/fun.mp3");   // starts music ONLY once
     next();         // moves to next page
   };
 

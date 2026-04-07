@@ -13,23 +13,24 @@ function App() {
   const audioRef = useRef(null);
 
   // START MUSIC FUNCTION (SAFE VERSION)
-  const startMusic = () => {
+ const startMusic = (src) => {
 
-    // Prevent restarting music
-    if (audioRef.current) return;
+  // Stop any current audio
+  if (audioRef.current) {
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+  }
 
-    const audio = new Audio("/fun.mp3");
+  const audio = new Audio(src);
+  audio.volume = 0.35;
+  audio.loop = true;
 
-    audio.volume = 0.35;
-    audio.loop = true;
+  audio.play().catch(() => {
+    console.log("Playback blocked");
+  });
 
-    // Safe play (prevents button freezing)
-    audio.play().catch(() => {
-      console.log("Playback blocked until user interaction");
-    });
-
-    audioRef.current = audio;
-  };
+  audioRef.current = audio;
+};
 
   return (
     <AnimatePresence mode="wait">
@@ -57,7 +58,7 @@ function App() {
       )}
 
       {step === 3 && (
-        <Final key="final" />
+        <Final key="final" startMusic={startMusic} />
       )}
 
     </AnimatePresence>
