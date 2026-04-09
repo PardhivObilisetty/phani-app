@@ -13,23 +13,48 @@ function App() {
   const audioRef = useRef(null);
 
   // START MUSIC FUNCTION (SAFE VERSION)
- const startMusic = (src) => {
+  const startMusic = () => {
 
-  // Stop any current audio
+  if (audioRef.current) return;
+
+  const first = new Audio("/fun.mp3");
+  first.volume = 0.35;
+  first.loop = false;
+
+  first.play().catch(() => {
+    console.log("Playback blocked");
+  });
+
+  first.onended = () => {
+    const loopSong = new Audio("/loop.mp3");
+    loopSong.volume = 0.35;
+    loopSong.loop = true;
+
+    loopSong.play().catch(() => {
+      console.log("Loop playback blocked");
+    });
+
+    audioRef.current = loopSong;
+  };
+
+  audioRef.current = first;
+};
+  const playFinalMusic = () => {
+
   if (audioRef.current) {
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
   }
 
-  const audio = new Audio(src);
-  audio.volume = 0.35;
-  audio.loop = true;
+  const finalSong = new Audio("/final.mp3");
+  finalSong.volume = 0.35;
+  finalSong.loop = true;
 
-  audio.play().catch(() => {
-    console.log("Playback blocked");
+  finalSong.play().catch(() => {
+    console.log("Final playback blocked");
   });
 
-  audioRef.current = audio;
+  audioRef.current = finalSong;
 };
 
   return (
@@ -58,8 +83,8 @@ function App() {
       )}
 
       {step === 3 && (
-        <Final key="final" startMusic={startMusic} />
-      )}
+      <Final key="final" playFinalMusic={playFinalMusic} />
+    )}
 
     </AnimatePresence>
   );

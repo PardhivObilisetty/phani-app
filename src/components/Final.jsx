@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import Layout from "./Layout";
 
-function Final({ startMusic }) {
+function Final({ playFinalMusic }) {
 
   const [answer, setAnswer] = useState(null);
 
   useEffect(() => {
-    if (startMusic) {
-      startMusic("/music.mp3");
-    }
+    playFinalMusic();
   }, []);
 
   return(
@@ -29,11 +27,9 @@ function Final({ startMusic }) {
 
       {answer==="yes" && (
         <h1 className="title">
-          I’ll keep waiting for you in this life… and if I’m not lucky in this life, then at least in the next one.” like shiva waiting for Parvathi may be im not shiva but you are my Parvathi.
+          I’ll keep waiting for you in this life… and if I’m not lucky in this life, then at least in the next one.
 
-          Nuvvu Yekkada unna yevaritho unna nvu santhosam ga undali end of the day. 
-
-          Niku telusu nikosam emaina chestha ani..
+          Nuvvu Yekkada unna yevaritho unna nvu santhosam ga undali.
 
           Last ga jagratha panduuuuu
         </h1>
