@@ -46,7 +46,7 @@ function App() {
     audioRef.current.currentTime = 0;
   }
 
-  const finalSong = new Audio("/final.mp3");
+  const finalSong = new Audio("/music.mp3");
   finalSong.volume = 0.35;
   finalSong.loop = true;
 
